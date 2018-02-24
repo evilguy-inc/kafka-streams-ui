@@ -1,0 +1,15 @@
+Messages:
+
+{{ selectedTopic }}
+<!--
+<div class="row" *ngFor="let message of messages">
+      {{ message }}
+</div> -->
+<div>
+  Length: {{messages?.length}}
+      <ul>
+          <li *ngFor="let message of messages">
+              {{ message.content }}
+          </li>
+      </ul>
+</div>

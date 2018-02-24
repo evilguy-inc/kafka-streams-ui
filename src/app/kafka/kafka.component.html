@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <div class="container">
+    <ngb-alert type="success" [dismissible]="false">
+      Bootstrap is working!
+    </ngb-alert>
+
+    <h1>
+      <i class="fa fa-bath" aria-hidden="true"></i>
+      And so is Font Awesome!
+    </h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col">
+            Topic List:
+          </div>
+        </div>
+        <div class="row" *ngFor="let topicInfo of topics">
+          <div class="col">
+
+            <button (click)="selectTopic(topicInfo.name)">
+              {{ topicInfo.name }}
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <messages-component [selectedTopic]="selectedTopic"></messages-component>
+    </div>
+  </div>
+</div>
