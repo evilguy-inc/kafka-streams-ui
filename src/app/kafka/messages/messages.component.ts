@@ -19,6 +19,8 @@ export class MessagesComponent implements OnInit, OnChanges {
 
   private messages: Observable<Message[]>;
 
+  private searchBarValue: string;
+
   constructor(
     private _restService: RestService
   ) { }
@@ -39,5 +41,12 @@ export class MessagesComponent implements OnInit, OnChanges {
         .subscribe(response => {
           this.messages = response;
         });
+  }
+
+  private find() {
+    this._restService.findMessagesByKey(this.selectedTopic, this.searchBarValue)
+      .subscribe(response => {
+        this.messages = Observable.of(response);
+      });
   }
 }

@@ -1,9 +1,18 @@
 <div>
-  Messages: {{ selectedTopic }}
-  Length: {{messages?.length}}
-  <ul>
-    <div *ngFor="let message of (messages | async)">
-      <message-component [message]="message"></message-component>
-    </div>
-  </ul>
+  <div>
+    Messages: {{ selectedTopic }} Length: {{messages?.length}}
+  </div>
+  <div>
+    <p>
+      <input type="text" [(ngModel)]="searchBarValue" />
+      <button (click)="find()">Search</button>
+    </p>
+  </div>
+  <div>
+    <ul>
+      <div *ngFor="let message of (messages | async)">
+        <message-component [message]="message"></message-component>
+      </div>
+    </ul>
+  </div>
 </div>

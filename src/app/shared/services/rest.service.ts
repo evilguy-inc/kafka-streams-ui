@@ -53,7 +53,7 @@ export class RestService {
           ).delay(1000).map(response => {
             return response;
           }).flatMap(res => {
-            if (res.status == 201){
+            if (res.status == 201) {
               return this.getMessagesObservable(topicName);
             }
             return null;
@@ -78,4 +78,21 @@ export class RestService {
           });
       });
   }
+
+
+  findMessagesByKey(topicName: string, key): Observable<Message[]> {
+    return this._http.get("http://localhost:9096/api/message",
+      {
+        params: {
+          topic: topicName,
+          key: key
+        }
+      })
+      .map(response => {
+        return Object.values(response.json())
+          .map(item => {
+            return new Message(item);
+          });
+      });
+  };
 }
