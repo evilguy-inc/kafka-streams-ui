@@ -1,9 +1,12 @@
 
 export class Message{
 
-  content: string;
+  text: string;
+  content: {};
+
 
   constructor(content){
-    this.content = JSON.stringify(content);
+    this.text = JSON.stringify(content);
+    this.content = content;
   }
 }

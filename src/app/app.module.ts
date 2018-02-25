@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { KafkaComponent } from './kafka/kafka.component';
 import { MessagesComponent } from './kafka/messages/messages.component';
+import { MessageComponent } from './kafka/messages/message/message.component';
 
 import { RestService } from './shared/services/rest.service';
 
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     HomeComponent,
     KafkaComponent,
     MessagesComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

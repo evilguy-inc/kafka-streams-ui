@@ -2,8 +2,8 @@
   Messages: {{ selectedTopic }}
   Length: {{messages?.length}}
   <ul>
-    <li *ngFor="let message of (messages | async)">
-      {{ message.content }}
-    </li>
+    <div *ngFor="let message of (messages | async)">
+      <message-component [message]="message"></message-component>
+    </div>
   </ul>
 </div>
