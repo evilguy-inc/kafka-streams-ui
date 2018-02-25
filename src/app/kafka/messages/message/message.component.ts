@@ -11,7 +11,14 @@ export class MessageComponent implements OnInit {
   @Input()
   private message: Message;
 
+  private messageKeys: string[];
+
+
   ngOnInit() {
+  }
+
+  private getKeys(object):string[]{
+    return Object.keys(object);
   }
 
 }

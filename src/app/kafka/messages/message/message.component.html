@@ -1,5 +1,3 @@
-<!-- {{ message.content }} -->
-<div ng-repeat="(key, value) in message.content">
-  a
-  {{ key }}
-</div>
+
+<json-tree [object]="message.content" [entryKey]="'Value'"></json-tree>
+

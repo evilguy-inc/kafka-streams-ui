@@ -1,0 +1,32 @@
+<div style="margin-left:20px;">
+
+
+  <div (click)="updateStatus()" style="color: #D02828; font-size: 13px;">{{ entryKey }} :</div>
+
+  <!-- Display inline -->
+  <div class="row" *ngIf="isInline(displayStatus)" style="font-style: italic; margin-left:5px; font-size: 11px; opacity: .7;">
+    <div> {{ '{' }} </div>
+    <div *ngFor="let key of getKeys(object)">
+      {{ '{' }} {{ key }} : {{ object[key] }} {{ '}' }}
+    </div>
+    <div ngNonBindable>}</div>
+  </div>
+
+
+  <!-- Display list of keys -->
+  <div *ngIf="isOpen(displayStatus)">
+    <div *ngFor="let key of getKeys(object)">
+
+      <div *ngIf="isObject(object[key])">
+        <json-tree [object]="object[key]" [entryKey]="key"></json-tree>
+      </div>
+
+      <div *ngIf="!isObject(object[key])" style="margin-left:20px;" >
+        <span style="color: #D02828; font-size: 13px;">{{ key }} :</span>
+        <span style="font-size: 12px;">{{ object[key] }}</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { KafkaComponent } from './kafka/kafka.component';
 import { MessagesComponent } from './kafka/messages/messages.component';
 import { MessageComponent } from './kafka/messages/message/message.component';
+import { JsonTreeComponent } from './display-components/json-tree/json-tree.component';
 
 import { RestService } from './shared/services/rest.service';
 
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     KafkaComponent,
     MessagesComponent,
     MessageComponent,
+    JsonTreeComponent,
   ],
   imports: [
     BrowserModule,
