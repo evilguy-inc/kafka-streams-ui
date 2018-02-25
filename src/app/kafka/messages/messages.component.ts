@@ -1,13 +1,15 @@
-import { Component, Input, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { RestService } from './../../shared/services/rest.service';
+
+
+import { Observable } from 'rxjs';
 
 import { Message } from './../../shared/models/Message.model';
 
 @Component({
   selector: 'messages-component',
-  templateUrl: './messages.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './messages.component.html'
 })
 export class MessagesComponent implements OnInit, OnChanges {
 
@@ -15,7 +17,7 @@ export class MessagesComponent implements OnInit, OnChanges {
   @Input()
   private selectedTopic: string;
 
-  private messages: Message[];
+  private messages: Observable<Message[]>;
 
   constructor(
     private _restService: RestService
@@ -30,11 +32,12 @@ export class MessagesComponent implements OnInit, OnChanges {
     }
   }
 
-  private onChangeSelectedTopic(topicName: string){
+  private onChangeSelectedTopic(topicName: string) {
     this.selectedTopic = topicName;
-    this._restService.getMessages(topicName)
-    .subscribe(response => {
-      this.messages = response;
-    });
+    if (topicName)
+      this._restService.getMessages(topicName)
+        .subscribe(response => {
+          this.messages = response;
+        });
   }
 }

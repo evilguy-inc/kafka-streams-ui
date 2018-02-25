@@ -1,15 +1,9 @@
-Messages:
-
-{{ selectedTopic }}
-<!--
-<div class="row" *ngFor="let message of messages">
-      {{ message }}
-</div> -->
 <div>
+  Messages: {{ selectedTopic }}
   Length: {{messages?.length}}
-      <ul>
-          <li *ngFor="let message of messages">
-              {{ message.content }}
-          </li>
-      </ul>
+  <ul>
+    <li *ngFor="let message of (messages | async)">
+      {{ message.content }}
+    </li>
+  </ul>
 </div>

@@ -38,7 +38,31 @@ export class RestService {
   };
 
 
-  getMessages(topicName: string): Observable<Message[]> {
+  getMessages(topicName: string): Observable<Observable<Message[]>> {
+    return this.getLoadedTopics()
+      .map(subscribedTopicList => {
+
+        let currentTopic = subscribedTopicList.find(basicTopic => { return basicTopic.name === topicName });
+        if (currentTopic)
+          return this.getMessagesObservable(topicName);
+        else
+          return this._http.post("http://localhost:9096/api/topic",
+            {
+              topic: topicName
+            }
+          ).delay(1000).map(response => {
+            return response;
+          }).flatMap(res => {
+            if (res.status == 201){
+              return this.getMessagesObservable(topicName);
+            }
+            return null;
+          })
+      });
+  }
+
+
+  private getMessagesObservable(topicName: string) {
     return this._http.get("http://localhost:9096/api/message/period",
       {
         params: {
@@ -53,6 +77,5 @@ export class RestService {
             return new Message(item);
           });
       });
-  };
-
+  }
 }
