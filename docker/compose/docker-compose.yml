@@ -1,0 +1,28 @@
+version: '2.0'
+services:
+
+  kafka-streams-rest-api:
+    image: evilguy/kafka-streams-rest-api:latest
+    hostname: kafka-streams-rest-api
+    container_name: kafka-streams-rest-api
+    # depends_on:
+    #   - zookeeper
+    #   - broker
+    #   - schema-registry
+    ports:
+      - 9096:9096
+    environment:
+      RUN_ARGS: --kafka.bootstrap.servers=broker:9092 --kafka.zookeeper.connect=zookeeper:2181 --kafka.schema.registry.url=http://schema-registry:8081
+
+# you need add hosts mapping
+# for MacOs
+# sudo bash -c "echo '127.0.0.1       kafka-streams-rest-api' >> /etc/hosts"
+  kafka-streams-ui:
+    container_name: kafka-streams-ui
+    image: evilguy/kafka-streams-ui
+    depends_on:
+      - kafka-streams-rest-api
+    ports:
+      - 9098:9098
+    environment:
+      - KAFKA_STREAMS_REST_API_URL=http://kafka-streams-rest-api:9096

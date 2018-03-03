@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+/docker/kafka-streams-ui/include/angular-app
 
 # IDEs and editors
 /.idea

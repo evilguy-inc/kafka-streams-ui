@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
@@ -15,7 +16,7 @@ export class RestService {
 
 
   getAllTopics(): Observable<TopicInfo[]> {
-    return this._http.get("http://localhost:9096/api/topic/kafka")
+    return this._http.get(environment.kafkaStreamsUrl + "/api/topic/kafka")
       .map(response => {
         return Object.values(response.json())
           .map(item => {
@@ -28,7 +29,7 @@ export class RestService {
 
 
   getLoadedTopics(): Observable<BasicTopicInfo[]> {
-    return this._http.get("http://localhost:9096/api/topic")
+    return this._http.get(environment.kafkaStreamsUrl + "/api/topic")
       .map(response => {
         return Object.values(response.json())
           .map(item => {
@@ -46,7 +47,7 @@ export class RestService {
         if (currentTopic)
           return this.getMessagesObservable(topicName);
         else
-          return this._http.post("http://localhost:9096/api/topic",
+          return this._http.post(environment.kafkaStreamsUrl + "/api/topic",
             {
               topic: topicName
             }
@@ -63,7 +64,7 @@ export class RestService {
 
 
   private getMessagesObservable(topicName: string) {
-    return this._http.get("http://localhost:9096/api/message/period",
+    return this._http.get(environment.kafkaStreamsUrl + "/api/message/period",
       {
         params: {
           topic: topicName,
@@ -81,11 +82,11 @@ export class RestService {
 
 
   findMessagesByKey(topicName: string, key): Observable<Message[]> {
-    return this._http.get("http://localhost:9096/api/message",
+    return this._http.get(environment.kafkaStreamsUrl + "/api/message/find",
       {
         params: {
           topic: topicName,
-          key: key
+          searchTag: key
         }
       })
       .map(response => {
