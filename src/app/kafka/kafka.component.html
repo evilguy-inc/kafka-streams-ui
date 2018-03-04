@@ -6,7 +6,7 @@
     <div class="col-sm-5">
       <div style="background-color:lavender;">
         <div class="row">
-          <div class="col">
+          <div class="col" style="padding-bottom: 5px; ">
             Topic List:
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Filter topics... (not working yet..)">
@@ -27,7 +27,7 @@
 
       </div>
     </div>
-    <div class="col" style="overflow-y:auto; height:60vh; background-color:lavenderblush;">
+    <div class="col" style="background-color:lavenderblush;">
       <messages-component [selectedTopic]="selectedTopic"></messages-component>
     </div>
   </div>

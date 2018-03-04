@@ -1,0 +1,33 @@
+<div class="json-padding">
+
+  <div class="json-key" (click)="updateStatus()">
+    {{ entryKey }} :
+
+    <!-- Display inline -->
+    <small class="json-closed-tip" *ngIf="isInline(displayStatus)" >
+      <span> {{ '{' }} </span>
+      <span *ngFor="let key of getKeys(treeObject)">
+        {{ key }} : {{ treeObject[key] }}
+        <span *ngIf="getKeys(treeObject).indexOf(key) !== (getKeys(treeObject).length-1)">,</span>
+      </span>
+      <span ngNonBindable>}</span>
+    </small>
+  </div>
+
+  <!-- Display list of keys -->
+  <div *ngIf="isOpen(displayStatus)">
+    <div *ngFor="let key of getKeys(treeObject)">
+
+      <div *ngIf="isObject(treeObject[key])">
+        <json-tree [treeObject]="treeObject[key]" [entryKey]="key"></json-tree>
+      </div>
+
+      <div class="json-padding" *ngIf="!isObject(treeObject[key])">
+        <span class="json-key">{{ key }} :</span>
+        <span class="json-value">{{ treeObject[key] }}</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>

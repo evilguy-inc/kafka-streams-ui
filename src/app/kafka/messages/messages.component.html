@@ -1,18 +1,22 @@
 <div>
   <div>
-    Messages: {{ selectedTopic }} Length: {{messages?.length}}
+    Messages: {{ selectedTopic?.name }} Length: {{messages?.length}}
   </div>
-  <div>
-    <p>
-      <input type="text" [(ngModel)]="searchBarValue" />
-      <button (click)="find()">Search</button>
-    </p>
+  <div style="padding-bottom: 5px; ">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchBarValue">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="find()">Search</button>
+      </span>
+    </div>
   </div>
-  <div>
-    <ul>
-      <div *ngFor="let message of (messages | async)">
-        <message-component [message]="message"></message-component>
-      </div>
-    </ul>
+
+  <div style="overflow-y:auto; height:60vh; ">
+
+    <div class="list-group" *ngFor="let message of (messages | async)">
+      <message-component class="list-group-item list-group-item-action flex-column align-items-start" [message]="message"></message-component>
+    </div>
+
   </div>
+
 </div>

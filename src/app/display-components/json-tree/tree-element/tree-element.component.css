@@ -1,0 +1,16 @@
+.json-key {
+  color: #D02828;
+}
+
+.json-value {}
+
+.json-closed-tip {
+  font-style: italic;
+  color: rgb(0, 0, 0);
+  margin-left: 5px;
+  opacity: .7;
+}
+
+.json-padding {
+  margin-left:10px;
+}

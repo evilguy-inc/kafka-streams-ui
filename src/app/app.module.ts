@@ -6,12 +6,13 @@ import { FormsModule } from '@angular/forms'
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { JsonTreeModule } from './display-components/json-tree/json-tree.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { KafkaComponent } from './kafka/kafka.component';
 import { MessagesComponent } from './kafka/messages/messages.component';
 import { MessageComponent } from './kafka/messages/message/message.component';
-import { JsonTreeComponent } from './display-components/json-tree/json-tree.component';
 
 import { RestService } from './shared/services/rest.service';
 
@@ -34,7 +35,6 @@ const appRoutes: Routes = [
     KafkaComponent,
     MessagesComponent,
     MessageComponent,
-    JsonTreeComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,7 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule,
     NgbModule.forRoot(),
+    JsonTreeModule,
   ],
   providers: [
     RestService,
