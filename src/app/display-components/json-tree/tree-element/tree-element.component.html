@@ -1,10 +1,18 @@
 <div class="json-padding">
 
   <div class="json-key" (click)="updateStatus()">
+    <span *ngIf="isOpen(displayStatus)">
+      <i class="fa fa-minus json-font-awesome" style="color:blue" aria-hidden="true"> </i>
+    </span>
+    <span *ngIf="!isOpen(displayStatus)">
+      <i class="fa fa-plus json-font-awesome" aria-hidden="true"> </i>
+    </span>
+
+
     {{ entryKey }} :
 
     <!-- Display inline -->
-    <small class="json-closed-tip" *ngIf="isInline(displayStatus)" >
+    <small class="json-closed-tip" *ngIf="isInline(displayStatus)">
       <span> {{ '{' }} </span>
       <span *ngFor="let key of getKeys(treeObject)">
         {{ key }} : {{ treeObject[key] }}
@@ -23,6 +31,7 @@
       </div>
 
       <div class="json-padding" *ngIf="!isObject(treeObject[key])">
+        <i class="fa fa-plus json-font-awesome" aria-hidden="true"> </i>
         <span class="json-key">{{ key }} :</span>
         <span class="json-value">{{ treeObject[key] }}</span>
       </div>
