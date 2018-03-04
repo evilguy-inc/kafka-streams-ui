@@ -14,7 +14,7 @@ import { TopicInfo } from './../shared/models/TopicInfo.model';
 export class KafkaComponent implements OnInit {
 
   private topics: TopicInfo[];
-  private selectedTopic: string;
+  private selectedTopic: TopicInfo;
 
   constructor(
     private _restService: RestService
@@ -27,7 +27,7 @@ export class KafkaComponent implements OnInit {
      });
   }
 
-  selectTopic(topicName : string){
-    this.selectedTopic = topicName;
+  selectTopic(topic: TopicInfo){
+    this.selectedTopic = topic;
   }
 }

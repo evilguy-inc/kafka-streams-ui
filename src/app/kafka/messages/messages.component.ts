@@ -5,6 +5,7 @@ import { RestService } from './../../shared/services/rest.service';
 
 import { Observable } from 'rxjs';
 
+import { TopicInfo } from './../../shared/models/TopicInfo.model';
 import { Message } from './../../shared/models/Message.model';
 
 @Component({
@@ -15,7 +16,7 @@ export class MessagesComponent implements OnInit, OnChanges {
 
 
   @Input()
-  private selectedTopic: string;
+  private selectedTopic: TopicInfo;
 
   private messages: Observable<Message[]>;
 
@@ -34,17 +35,17 @@ export class MessagesComponent implements OnInit, OnChanges {
     }
   }
 
-  private onChangeSelectedTopic(topicName: string) {
-    this.selectedTopic = topicName;
-    if (topicName)
-      this._restService.getMessages(topicName)
+  private onChangeSelectedTopic(topic: TopicInfo) {
+    this.selectedTopic = topic;
+    if (topic)
+      this._restService.getMessages(topic.name)
         .subscribe(response => {
           this.messages = response;
         });
   }
 
   private find() {
-    this._restService.findMessagesByKey(this.selectedTopic, this.searchBarValue)
+    this._restService.findMessagesByKey(this.selectedTopic.name, this.searchBarValue)
       .subscribe(response => {
         this.messages = Observable.of(response);
       });
